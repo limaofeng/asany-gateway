@@ -18,7 +18,9 @@ buildCache {
 }
 
 rootProject.name = 'asany-gateway'
-include ":boot"
+include ":boot", ":security"
 
 // 启动
 project(':boot').projectDir = "$rootDir/boot" as File
+// 启动
+project(':security').projectDir = "$rootDir/security" as File

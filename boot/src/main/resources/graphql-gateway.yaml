@@ -1,0 +1,85 @@
+
+scalars:
+  - name: "File"
+    description: "A file part in a multipart request"
+  - name: "Upload"
+    description: "A file part in a multipart request"
+
+services:
+  - name: asany
+    url: "https://api.asany.cn/graphql"
+    typeDefs: "./asany.graphql"
+    introspection:
+      enabled: false
+      frequency: 30m
+    excludeFields:
+      - "Application.routespaces"
+
+override:
+  - type: "Query"
+    fields:
+      - name: "apps"
+        mapping: "applications"
+        arguments:
+          - name: "filter"
+            mapping: "where"
+  - type: "Application"
+    fields:
+      - name: "appName"
+        mapping: "name"
+        dataFetcher: "appName"
+  - type: "Storage"
+    fields:
+      - name: "createdBy"
+        type: "User"
+        resolve: "user(id: $createdBy)"
+  - type: "ClientSecret"
+    fields:
+      - name: "type"
+        type: "Dict"
+        resolve: 'dict(code: $type, type: "client_type")'
+
+dataFetchers:
+  - name: "appName"
+    class: "cn.asany.example.demo.AppNameDataFetcher"
+
+directives:
+  - name: "myDirective"
+    description: "A simple directive"
+    repeatable: true
+    locations:
+      - "FIELD_DEFINITION"
+      - "FIELD"
+    arguments:
+      - name: "arg1"
+        type: "String"
+        description: "A simple argument"
+    handler: "cn.asany.example.demo.MyDirective"
+
+security:
+  authentication:
+    enabled: true
+    providers:
+      - type: apiKey
+        config:
+          apiKeyHeader: "X-API-KEY"
+          # 可以添加更多与 apiKey 相关的配置参数
+      - type: iam
+        config:
+          iamRoleArn: "arn:aws:iam::123456789012:role/SampleRole"
+          # 添加适用于 AWS IAM 的其他配置
+      - type: oidc
+        config:
+          issuer: "https://example.com"
+          clientId: "your-client-id"
+          clientSecret: "your-client-secret"
+          # 添加其他适用于 OpenID Connect 的配置
+      - type: userPools
+        config:
+          userPoolId: "us-east-1_example"
+          appClientId: "example-app-client-id"
+          # 添加适用于用户池（如 AWS Cognito 用户池）的配置
+
+  authorization:
+    enabled: true
+    policy: "./auth-policy.yaml"

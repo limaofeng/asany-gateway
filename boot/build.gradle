@@ -24,6 +24,8 @@ bootRun {
 }
 
 dependencies {
+    implementation project(":security")
+    implementation "cn.asany.chaos:jfantasy-graphql-gateway:$LIB_JFAN_VER"
     implementation "org.flywaydb:flyway-core"
     implementation "org.flywaydb:flyway-mysql"
     implementation "org.springframework.boot:spring-boot-starter-data-redis"

@@ -1,0 +1,5 @@
+description = '权限控制模块'
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-data-redis"
+}
