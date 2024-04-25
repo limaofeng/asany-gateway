@@ -1,0 +1,189 @@
+spring:
+  application:
+    name: server
+  data:
+    elasticsearch:
+      repositories:
+        enabled: false
+    redis:
+      repositories:
+        enabled: false
+      port: ${REDIS_PORT}
+      host: ${REDIS_HOST}
+      password: ${REDIS_PASSWORD}
+      timeout: 10000
+      lettuce:
+        cluster:
+          refresh:
+            adaptive: true
+            period: 60s
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 60MB
+  main:
+    allow-bean-definition-overriding: true
+  sequence:
+    pool-size: 500
+  datasource:
+    name: datasource
+    url: jdbc:mysql://${DATABASE_HOST}/${DATABASE_INSTANCE_NAME}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    hikari:
+      connection-timeout: 30000
+      minimum-idle: 20
+      maximum-pool-size: 100
+      auto-commit: false
+      idle-timeout: 600000
+      pool-name: DateSourceHikariCP
+      max-lifetime: 1800000
+      connection-test-query: SELECT 1
+      connection-init-sql: set names utf8mb4
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 500
+          batch_versioned_data: true
+          time_zone: GMT+8
+        order_inserts: true
+        order_updates: true
+        session_factory:
+          interceptor: org.jfantasy.framework.dao.hibernate.interceptors.BusEntityInterceptor
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        cache:
+          use_query_cache: false
+          use_second_level_cache: false
+          region:
+            factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+        ejb:
+          identifier_generator_strategy_provider: org.jfantasy.framework.dao.hibernate.spi.CustomIdentifierGeneratorStrategyProvider
+  quartz:
+    job-store-type: jdbc
+    wait-for-jobs-to-complete-on-shutdown: true
+    overwrite-existing-jobs: true
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: scheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: false
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+  flyway:
+    locations: classpath:db
+    create-schemas: true
+    placeholder-replacement: false
+    url: jdbc:mysql://${DATABASE_HOST}/mysql?useUnicode=true&characterEncoding=UTF-8
+    user: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    schemas: ${DATABASE_INSTANCE_NAME}
+
+flowable:
+  async-executor-activate: false
+  database-schema-update: false
+  app:
+    deploy-resources: true
+  deploymentName: '"SpringBootAutoDeployment"'
+  form:
+    deploy-resources: true
+    deployment-name: SpringBootAutoDeployment
+    enabled: true
+    resource-location: classpath*:/forms/
+    resource-suffixes: '**.json'
+    servlet:
+      load-on-startup: -1
+      name: Flowable Form Rest API
+      path: /form-api
+  idm:
+    enabled: true
+    password-encoder: spring_bcrypt
+  jpa-enabled: true
+  modeler:
+    app:
+      rest-enabled: true
+  rest:
+    app:
+      authentication-mode: verify-privilege
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+
+graphql:
+  servlet:
+    exception-handlers-enabled: true
+    cors-enabled: true
+    cors:
+      allowed-origin-patterns: "*"
+      allowed-methods: GET, HEAD, POST
+      allowed-headers: Accept, Origin, Authorization, Content-Type, Last-Modified, X-Request-ID, X-Client-ID
+      allow-credentials: true
+      max-age: 3600
+  tools:
+    introspection-enabled: true
+  graphiql:
+    subscriptions:
+      reconnect: true
+      timeout: 30
+    endpoint:
+      subscriptions: /subscriptions
+
+management:
+  health:
+    elasticsearch:
+      enabled: false
+
+cuckoo:
+  rebuild: false
+  elasticsearch:
+    client:
+      url: ${ELASTIC_URL}
+      api-key: ${ELASTIC_API}
+      ssl:
+        certificate-path: ${ELASTIC_CERTIFICATE_PATH}
+
+openim:
+  url: ${OPENIM_SERVER}
+  secret: ${OPENIM_SECRET}
+  admin:
+    user: ${OPENIM_ADMIN}
+
+sms:
+  provider:
+    aliyun:
+      accessKeyId: ${ALIYUN_ACCESSKEY_ID}
+      accessKeySecret: ${ALIYUN_ACCESSKEY_SECRET}
+
+james:
+  filesystem:
+    workingDirectory: ${JAMES_FILESYSTEM_WORKING_DIRECTORY}

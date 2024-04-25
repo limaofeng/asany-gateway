@@ -1,0 +1,38 @@
+# IDE for VSCode
+.vscode
+.fleet
+.settings
+.classpath
+.project
+.factorypath
+.jpb
+out
+bin
+ca
+
+### IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+
+### JRebel
+rebel.xml
+/**/resources/rebel.xml
+
+### Build
+.gradle
+build
+
+### Graphql Plugin
+.graphqlconfig
+schema.graphql
+
+# local env
+.env
+
+# laboratory
+storage-preview
+
+# james temp dir
+james

@@ -1,0 +1,17 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  sequence:
+    pool-size: 10
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        generate_statistics: false
+  datasource:
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+    proxy: true
