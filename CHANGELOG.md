@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/limaofeng/asany-gateway/compare/v1.0.6...v1.0.7) (2024-04-29)
+
+
+### Features
+
+* update GraphQL gateway config file path ([1f0b78e](https://github.com/limaofeng/asany-gateway/commit/1f0b78e65642aefb62ce06ef8aea8ab01e15fd8b))
+
 ### [1.0.6](https://github.com/limaofeng/asany-gateway/compare/v1.0.5...v1.0.6) (2024-04-29)
 
 
