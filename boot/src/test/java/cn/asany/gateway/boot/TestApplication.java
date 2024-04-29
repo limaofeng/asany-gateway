@@ -1,4 +1,4 @@
-package cn.asany.shanhai;
+package cn.asany.gateway.boot;
 
 import graphql.kickstart.autoconfigure.tools.GraphQLJavaToolsAutoConfiguration;
 import graphql.kickstart.autoconfigure.web.servlet.GraphQLWebAutoConfiguration;

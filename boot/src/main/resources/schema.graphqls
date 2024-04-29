@@ -11,3 +11,7 @@ enum FileSizeUnit {
   GB
   TB
 }
+
+type Query {
+  uptime: String
+}

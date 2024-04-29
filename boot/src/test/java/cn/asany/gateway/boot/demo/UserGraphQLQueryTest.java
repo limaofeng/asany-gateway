@@ -1,9 +1,9 @@
-package cn.asany.shanhai.demo;
+package cn.asany.gateway.boot.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import cn.asany.shanhai.TestApplication;
+import cn.asany.gateway.boot.TestApplication;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import java.io.IOException;
