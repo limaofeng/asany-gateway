@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/limaofeng/asany-gateway/compare/v1.0.5...v1.0.6) (2024-04-29)
+
+
+### Features
+
+* asany-legacy URL in graphql-gateway.yaml ([5b5598f](https://github.com/limaofeng/asany-gateway/commit/5b5598f65ac832a261918499d5c0c05d605c0fd6))
+
 ### [1.0.5](https://github.com/limaofeng/asany-gateway/compare/v1.0.4...v1.0.5) (2024-04-29)
 
 
