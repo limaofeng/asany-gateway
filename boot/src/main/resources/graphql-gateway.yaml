@@ -13,7 +13,7 @@ services:
       enabled: false
       frequency: 30m
   - name: asany-legacy
-    url: "http://asany-server:8080/graphql"
+    url: "http://asany-legacy:8080/graphql"
     typeDefs: "./asany-legacy.graphql"
     introspection:
       enabled: false
