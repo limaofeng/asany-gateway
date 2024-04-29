@@ -1,16 +1,6 @@
-directive @fileFormat on FIELD_DEFINITION
-
 scalar JSON
 scalar File
 scalar Number
-
-enum FileSizeUnit {
-  bytes
-  KB
-  MB
-  GB
-  TB
-}
 
 type Query {
   uptime: String
