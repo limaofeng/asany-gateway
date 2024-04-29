@@ -76,6 +76,7 @@ public class RemoteGraphQLService implements GraphQLService {
         IntrospectionQueryBuilder.build(
             IntrospectionQueryBuilder.Options.defaultOptions()
                 .inputValueDeprecation(false)
+                .directiveIsRepeatable(false)
                 .isOneOf(false));
 
     System.out.println("introspectionQuery:" + introspectionQuery);
