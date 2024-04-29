@@ -23,5 +23,7 @@ spotless {
         indentWithSpaces(4)
 
         googleJavaFormat()
+
+        licenseHeaderFile "${rootDir}/gradle/LICENSE", 'package '
     }
 }
