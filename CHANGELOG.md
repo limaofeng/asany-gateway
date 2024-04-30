@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.13](https://github.com/limaofeng/asany-gateway/compare/v1.0.12...v1.0.13) (2024-04-30)
+
+
+### Features
+
+* update JFantasy version ([a0d947e](https://github.com/limaofeng/asany-gateway/commit/a0d947ecb7ffdcf3a64c2574130343eebda75c91))
+
 ### [1.0.12](https://github.com/limaofeng/asany-gateway/compare/v1.0.11...v1.0.12) (2024-04-29)
 
 
