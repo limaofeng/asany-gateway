@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.17](https://github.com/limaofeng/asany-gateway/compare/v1.0.16...v1.0.17) (2024-05-13)
+
+
+### Features
+
+* 升级 JFAN ([4e4efe2](https://github.com/limaofeng/asany-gateway/commit/4e4efe2e38fb8209d47dcaa229ffc604eefccf7f))
+
 ### [1.0.16](https://github.com/limaofeng/asany-gateway/compare/v1.0.15...v1.0.16) (2024-05-13)
 
 
