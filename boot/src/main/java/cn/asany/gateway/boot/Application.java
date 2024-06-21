@@ -73,7 +73,7 @@ public class Application extends SpringBootServletInitializer {
         .schema(schemaParser.makeExecutableSchema())
         .clientFactory(clientFactory)
         .scalarResolver(new ScalarTypeResolver(scalarFactory))
-        .config("classpath:graphql-gateway.yaml")
+        .config("/app/config/graphql-gateway.yaml")
         .build();
   }
 
