@@ -1,5 +1,6 @@
 description = '权限控制模块'
 
 dependencies {
+    implementation "cn.asany.chaos:jfantasy-graphql-client:$LIB_JFAN_VER"
     implementation "org.springframework.boot:spring-boot-starter-data-redis"
 }

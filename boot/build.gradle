@@ -26,6 +26,7 @@ bootRun {
 dependencies {
     implementation project(":security")
     implementation "cn.asany.chaos:jfantasy-graphql-gateway:$LIB_JFAN_VER"
+    implementation "cn.asany.chaos:jfantasy-graphql-client:$LIB_JFAN_VER"
     implementation "com.graphql-java:graphql-java:$LIB_GRAPHQL_JAVA_VER"
     implementation "org.flywaydb:flyway-core"
     implementation "org.flywaydb:flyway-mysql"

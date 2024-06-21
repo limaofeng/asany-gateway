@@ -1,4 +1,3 @@
-
 scalars:
   - name: "File"
     description: "A file part in a multipart request"
@@ -7,42 +6,27 @@ scalars:
 
 services:
   - name: asany-server
-    url: "http://asany-server:8080/graphql"
+    url: "http://127.0.0.1:8081/graphql"
     typeDefs: "./asany-server.graphql"
     introspection:
-      enabled: false
+      enabled: true
       frequency: 30m
   - name: asany-legacy
-    url: "http://asany-legacy:8080/graphql"
+    url: "http://127.0.0.1:30882/graphql"
     typeDefs: "./asany-legacy.graphql"
     introspection:
-      enabled: false
+      enabled: true
       frequency: 30m
 
-
-#override:
-#  - type: "Query"
-#    fields:
-#      - name: "apps"
-#        mapping: "applications"
-#        arguments:
-#          - name: "filter"
-#            mapping: "where"
-#  - type: "Application"
-#    fields:
-#      - name: "appName"
-#        mapping: "name"
-#        dataFetcher: "appName"
-#  - type: "Storage"
-#    fields:
-#      - name: "createdBy"
-#        type: "User"
-#        resolve: "user(id: $createdBy)"
-#  - type: "ClientSecret"
-#    fields:
-#      - name: "type"
-#        type: "Dict"
-#        resolve: 'dict(code: $type, type: "client_type")'
+override:
+  - type: "Device"
+    fields:
+      - name: "createdBy"
+        type: "User"
+        resolve: "user(id: $createdBy)"
+      - name: "updatedBy"
+        type: "User"
+        resolve: "user(id: $createdBy)"
 
 #dataFetchers:
 #  - name: "appName"
