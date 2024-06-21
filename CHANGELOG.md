@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.19](https://github.com/limaofeng/asany-gateway/compare/v1.0.18...v1.0.19) (2024-06-21)
+
+
+### Features
+
+* 在网关中刷新token ([06dac99](https://github.com/limaofeng/asany-gateway/commit/06dac99cc825df7cb91a4a074b4215be363c5692))
+
 ### [1.0.18](https://github.com/limaofeng/asany-gateway/compare/v1.0.17...v1.0.18) (2024-06-07)
 
 
