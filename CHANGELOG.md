@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.21](https://github.com/limaofeng/asany-gateway/compare/v1.0.20...v1.0.21) (2024-06-21)
+
+
+### Bug Fixes
+
+* 修复过期时间设置与 gateway client 设置 ([2db1de5](https://github.com/limaofeng/asany-gateway/commit/2db1de561d0512c35b1c59b54b225fd46ff82457))
+
 ### [1.0.20](https://github.com/limaofeng/asany-gateway/compare/v1.0.19...v1.0.20) (2024-06-21)
 
 
