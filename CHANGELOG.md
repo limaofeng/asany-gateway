@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.20](https://github.com/limaofeng/asany-gateway/compare/v1.0.19...v1.0.20) (2024-06-21)
+
+
+### Bug Fixes
+
+* 解决 graphql-gateway.yaml 文件位置错误问题 ([94c5a12](https://github.com/limaofeng/asany-gateway/commit/94c5a124926bc3ae6a9c43d8d3e7170a0c03a516))
+
 ### [1.0.19](https://github.com/limaofeng/asany-gateway/compare/v1.0.18...v1.0.19) (2024-06-21)
 
 
