@@ -130,6 +130,9 @@ graphql:
       timeout: 30
     endpoint:
       subscriptions: /subscriptions
+  client:
+    GLOBAL:
+      address: http://asany-server:8080/graphql
 
 management:
   health:

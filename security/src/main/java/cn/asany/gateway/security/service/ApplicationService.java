@@ -54,11 +54,6 @@ public class ApplicationService implements ClientDetailsService {
                   Hibernate.initialize(item.getClientSecretsAlias());
                   return item;
                 })
-            .map(
-                item -> {
-                  item.setTokenExpires(1);
-                  return item;
-                })
             .get());
   }
 }
