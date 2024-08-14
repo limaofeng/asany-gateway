@@ -11,6 +11,7 @@ spring:
       port: ${REDIS_PORT}
       host: ${REDIS_HOST}
       password: ${REDIS_PASSWORD}
+      database: ${REDIS_DATABASE}
       timeout: 10000
       lettuce:
         cluster:
@@ -25,6 +26,20 @@ spring:
     allow-bean-definition-overriding: true
   sequence:
     pool-size: 500
+  jackson:
+    mapper:
+      accept-case-insensitive-properties: true
+    property-naming-strategy: LOWER_CAMEL_CASE
+    default-property-inclusion: ALWAYS
+    serialization:
+      fail-on-empty-beans: false
+      write-dates-as-timestamps: false
+      wrap-root-value: false
+    parser:
+      allow-unquoted-field-names: true
+      allow-single-quotes: true
+    deserialization:
+      fail-on-unknown-properties: false
   datasource:
     name: datasource
     url: jdbc:mysql://${DATABASE_HOST}/${DATABASE_INSTANCE_NAME}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
@@ -113,6 +128,12 @@ mybatis:
     log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
 
 graphql:
+  gateway:
+    config-location: classpath:graphql-gateway.yaml
+    security:
+      authorization:
+        enabled: false
+        config-location: classpath:auth-policy.yaml
   servlet:
     exception-handlers-enabled: true
     cors-enabled: true
@@ -140,6 +161,7 @@ management:
       enabled: false
 
 cuckoo:
+  enable: false
   rebuild: false
   elasticsearch:
     client:

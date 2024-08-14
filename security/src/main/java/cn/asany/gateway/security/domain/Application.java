@@ -20,7 +20,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import lombok.*;
 import net.asany.jfantasy.framework.dao.BaseBusEntity;
-import net.asany.jfantasy.framework.dao.Tenantable;
 import net.asany.jfantasy.framework.dao.hibernate.annotations.TableGenerator;
 import net.asany.jfantasy.framework.security.auth.TokenType;
 import net.asany.jfantasy.framework.security.auth.core.ClientDetails;
@@ -45,7 +44,7 @@ import org.hibernate.Hibernate;
       @UniqueConstraint(name = "UK_APPLICATION_NAME", columnNames = "NAME"),
       @UniqueConstraint(name = "UK_APPLICATION_CLIENT_ID", columnNames = "CLIENT_ID")
     })
-public class Application extends BaseBusEntity implements ClientDetails, Tenantable {
+public class Application extends BaseBusEntity implements ClientDetails {
   /** ID */
   @Id
   @Column(name = "ID")
@@ -91,10 +90,6 @@ public class Application extends BaseBusEntity implements ClientDetails, Tenanta
   @JoinColumn(name = "CLIENT_ID", referencedColumnName = "CLIENT_ID", updatable = false)
   @ToString.Exclude
   private Set<ClientSecret> clientSecretsAlias;
-
-  /** 租户ID */
-  @Column(name = "TENANT_ID", length = 24, nullable = false)
-  private String tenantId;
 
   @Builder.Default
   @Column(name = "TOKEN_EXPIRES")

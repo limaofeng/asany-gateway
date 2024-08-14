@@ -1,0 +1,95 @@
+public-paths:
+  - "/auth/login"
+  - "/application/*"
+  - "/oplog"
+  - "/tickets"
+
+default:
+  effect: "allow" #"deny"
+
+policies:
+  - id: "all-access"
+    description: "Admin access to all services"
+    subjects: ["role:admin", "role:user"]
+    statements:
+      - action: [ "read", "write", "list" ]
+        resource: ["arn:*:*:/*"]
+        effect: "allow"
+
+resources:
+  - id: "Authentication"
+    service: "ram"
+    description: "Demo user resource"
+    actions:
+      - id: "Login"
+        description: "List demo users"
+        type: "write"
+        operations:
+          - "Mutation.login"
+        arn:
+          - "/auth/login"
+  - id: "Application"
+    service: "ram"
+    description: "Demo application resource"
+    actions:
+      - id: "GetApplication"
+        description: "Get application"
+        type: "read"
+        operations:
+          - "Query.application"
+        arn:
+          - "/application/{#id}"
+  - id: "Oplog"
+    service: "oplog"
+    description: "Demo oplog resource"
+    actions:
+      - id: "ListOplog"
+        description: "List oplog"
+        type: "list"
+        operations:
+          - "Query.oplogs"
+        arn:
+          - "/oplog"
+  - id: "Device"
+    service: "ams"
+    description: "Demo device resource"
+    actions:
+      - id: "GetDevice"
+        description: "Get device"
+        type: "read"
+        operations:
+          - "Query.device"
+        arn:
+          - "/device/{#id}"
+  - id: "Ticket"
+    service: "ams"
+    description: "Demo ticket resource"
+    actions:
+      - id: "ListTicket"
+        description: "List ticket"
+        type: "list"
+        operations:
+          - "Query.ticketsConnection"
+        arn:
+          - "/tickets"
+  - id: "Other"
+    service: "other"
+    description: "偷懒的配置"
+    actions:
+      - id: "AllMutationOperation"
+        description: "All mutation operation"
+        type: "write"
+        operations:
+          - "Mutation.*"
+        arn:
+          - "/*"
+
+roles:
+  - id: "admin"
+    description: "Admin role"
+    permissions:
+      - "all-access"
+  - id: "user"
+    description: "User role"
+    permissions:
+      - "all-access"

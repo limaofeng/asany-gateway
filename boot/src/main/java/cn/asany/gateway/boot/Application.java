@@ -15,14 +15,6 @@
  */
 package cn.asany.gateway.boot;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import graphql.kickstart.execution.GraphQLObjectMapper;
-import graphql.kickstart.tools.SchemaParser;
-import java.io.IOException;
-import net.asany.jfantasy.graphql.gateway.*;
-import net.asany.jfantasy.graphql.gateway.service.DefaultGraphQLClientFactory;
-import net.asany.jfantasy.graphql.gateway.type.ScalarTypeProviderFactory;
-import net.asany.jfantasy.graphql.gateway.type.ScalarTypeResolver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration;
@@ -31,11 +23,8 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * 应用程序入口
@@ -61,36 +50,5 @@ public class Application extends SpringBootServletInitializer {
   @Override
   protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
     return builder.sources(Application.class);
-  }
-
-  @Bean(initMethod = "init", destroyMethod = "destroy")
-  public GraphQLGateway graphqlGateway(
-      SchemaParser schemaParser,
-      GraphQLClientFactory clientFactory,
-      ScalarTypeProviderFactory scalarFactory)
-      throws IOException {
-    return GraphQLGateway.builder()
-        .schema(schemaParser.makeExecutableSchema())
-        .clientFactory(clientFactory)
-        .scalarResolver(new ScalarTypeResolver(scalarFactory))
-        .config("/app/config/graphql-gateway.yaml")
-        .build();
-  }
-
-  @Bean
-  public GraphQLClientFactory graphQLClientFactory(
-      ResourceLoader resourceLoader, RestTemplate restTemplate, GraphQLObjectMapper objectMapper) {
-    return new DefaultGraphQLClientFactory(
-        resourceLoader,
-        restTemplate,
-        objectMapper
-            .getJacksonMapper()
-            .copy()
-            .setSerializationInclusion(JsonInclude.Include.ALWAYS));
-  }
-
-  @Bean
-  public GraphQLReloadSchemaProvider graphqlSchemaProvider(GraphQLGateway graphQLGateway) {
-    return new GraphQLGatewayReloadSchemaProvider(graphQLGateway);
   }
 }
