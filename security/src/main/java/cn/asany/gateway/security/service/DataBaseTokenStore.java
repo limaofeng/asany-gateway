@@ -18,16 +18,18 @@ package cn.asany.gateway.security.service;
 import cn.asany.gateway.security.domain.AccessToken;
 import cn.asany.gateway.security.domain.AccessTokenClientDetails;
 import cn.asany.gateway.security.domain.ClientDevice;
+import cn.asany.gateway.security.domain.enums.TokenType;
 import eu.bitwalker.useragentutils.UserAgent;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import net.asany.jfantasy.framework.security.auth.core.AbstractTokenStore;
+import net.asany.jfantasy.framework.security.auth.core.AuthenticationDetails;
 import net.asany.jfantasy.framework.security.auth.core.ClientRegistrationException;
+import net.asany.jfantasy.framework.security.auth.core.ClientSecret;
 import net.asany.jfantasy.framework.security.auth.oauth2.JwtTokenPayload;
 import net.asany.jfantasy.framework.security.auth.oauth2.core.OAuth2AccessToken;
-import net.asany.jfantasy.framework.security.auth.oauth2.core.OAuth2AuthenticationDetails;
 import net.asany.jfantasy.framework.security.auth.oauth2.jwt.JwtUtils;
 import net.asany.jfantasy.framework.security.authentication.Authentication;
 import net.asany.jfantasy.framework.util.common.ObjectUtil;
@@ -116,16 +118,19 @@ public class DataBaseTokenStore extends AbstractTokenStore<OAuth2AccessToken> {
       clientDetails.setLastIp(clientDetails.getIp());
       clientDetails.setLastLocation(clientDetails.getLocation());
 
-      OAuth2AuthenticationDetails details = authentication.getDetails();
+      AuthenticationDetails details = authentication.getDetails();
+
+      ClientSecret clientSecret = details.getClientSecret();
 
       AccessToken accessToken =
           this.accessTokenService.createAccessToken(
-              ObjectUtil.defaultValue(authentication.getName(), payload::getName),
-              payload.getUserId(),
-              payload.getClientId(),
-              details.getClientSecret(),
-              token,
-              clientDetails);
+            ObjectUtil.defaultValue(authentication.getName(), payload::getName),
+            payload.getUserId(),
+            payload.getClientId(),
+            clientSecret,
+            token,
+            TokenType.SESSION,
+            clientDetails);
       log.debug(String.format("accessToken(%d) 保存成功!", accessToken.getId()));
     } else {
       AccessToken accessToken = optionalAccessToken.get();

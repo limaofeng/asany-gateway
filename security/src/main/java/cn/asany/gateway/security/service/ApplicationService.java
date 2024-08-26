@@ -56,4 +56,8 @@ public class ApplicationService implements ClientDetailsService {
                 })
             .get());
   }
+
+  public String getTenantIdByNativeApplicationId(Long id) {
+    return null;
+  }
 }

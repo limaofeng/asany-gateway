@@ -15,6 +15,7 @@
  */
 package cn.asany.gateway.security.domain;
 
+import cn.asany.gateway.security.domain.enums.TokenType;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -23,7 +24,6 @@ import lombok.*;
 import net.asany.jfantasy.framework.dao.BaseBusEntity;
 import net.asany.jfantasy.framework.dao.hibernate.annotations.TableGenerator;
 import net.asany.jfantasy.framework.dao.hibernate.converter.StringSetConverter;
-import net.asany.jfantasy.framework.security.auth.TokenType;
 import org.hibernate.Hibernate;
 
 /**

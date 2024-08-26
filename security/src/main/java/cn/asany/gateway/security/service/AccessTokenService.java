@@ -19,6 +19,7 @@ import cn.asany.gateway.security.convert.AccessTokenConverter;
 import cn.asany.gateway.security.dao.AccessTokenDao;
 import cn.asany.gateway.security.domain.AccessToken;
 import cn.asany.gateway.security.domain.AccessTokenClientDetails;
+import cn.asany.gateway.security.domain.enums.TokenType;
 import cn.asany.gateway.security.vo.SessionAccessToken;
 import java.time.Instant;
 import java.util.Date;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import net.asany.jfantasy.framework.dao.jpa.PropertyFilter;
-import net.asany.jfantasy.framework.security.auth.TokenType;
+import net.asany.jfantasy.framework.security.auth.core.ClientSecret;
 import net.asany.jfantasy.framework.security.auth.oauth2.core.OAuth2AccessToken;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -65,20 +66,21 @@ public class AccessTokenService {
       String name,
       Long uid,
       String clientId,
-      String clientSecret,
+      ClientSecret clientSecret,
       OAuth2AccessToken token,
+      TokenType tokenType,
       AccessTokenClientDetails clientDetails) {
     return this.accessTokenDao.save(
         AccessToken.builder()
             .name(name)
             .token(token.getTokenValue())
-            .tokenType(token.getTokenType())
+            .tokenType(tokenType)
             .issuedAt(Date.from(token.getIssuedAt()))
             .expiresAt(token.getExpiresAt() != null ? Date.from(token.getExpiresAt()) : null)
             .scopes(token.getScopes())
             .refreshToken(token.getRefreshTokenValue())
             .client(clientId)
-            .clientSecret(clientSecret)
+            .clientSecret(clientSecret.getSecretValue())
             .lastUsedTime(Date.from(Instant.now()))
             .user(uid)
             .clientDetails(clientDetails)
@@ -127,7 +129,7 @@ public class AccessTokenService {
     PropertyFilter filter =
         PropertyFilter.newFilter()
             .equal("client", clientId)
-            .equal("tokenType", TokenType.SESSION_ID)
+            .equal("tokenType", TokenType.SESSION)
             .equal("user.id", uid);
     List<AccessToken> accessTokens =
         this.accessTokenDao.findAll(filter, Sort.by("issuedAt").descending());

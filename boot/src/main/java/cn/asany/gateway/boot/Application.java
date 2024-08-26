@@ -20,6 +20,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
@@ -39,6 +40,7 @@ import org.springframework.context.annotation.Configuration;
     exclude = {
       MongoAutoConfiguration.class,
       RedisRepositoriesAutoConfiguration.class,
+      QuartzAutoConfiguration.class,
       ElasticsearchRepositoriesAutoConfiguration.class
     })
 public class Application extends SpringBootServletInitializer {

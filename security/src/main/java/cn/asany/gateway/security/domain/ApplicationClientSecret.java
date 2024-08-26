@@ -21,6 +21,7 @@ import java.util.Objects;
 import lombok.*;
 import net.asany.jfantasy.framework.dao.BaseBusEntity;
 import net.asany.jfantasy.framework.dao.hibernate.annotations.TableGenerator;
+import net.asany.jfantasy.framework.security.auth.core.ClientSecret;
 import net.asany.jfantasy.framework.security.auth.core.ClientSecretType;
 import org.hibernate.Hibernate;
 
@@ -38,12 +39,12 @@ import org.hibernate.Hibernate;
 @Table(
     name = "AUTH_CLIENT_SECRET",
     uniqueConstraints = {@UniqueConstraint(name = "UK_CLIENT_ID", columnNames = "CLIENT_ID")})
-public class ClientSecret extends BaseBusEntity {
+public class ApplicationClientSecret extends BaseBusEntity implements ClientSecret {
 
   @Id
   @Column(name = "ID")
   @TableGenerator
-  private Long id;
+  private String id;
 
   /** 密钥类型 */
   @Column(name = "TYPE", nullable = false, length = 20)
@@ -66,6 +67,16 @@ public class ClientSecret extends BaseBusEntity {
   @ToString.Exclude
   private List<AccessToken> accessTokens;
 
+  @Builder.Default
+  @Column(name = "TOKEN_EXPIRES")
+  private Integer tokenExpires = 30;
+
+  @Override
+  @Transient
+  public String getSecretValue() {
+    return this.secret;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -74,7 +85,7 @@ public class ClientSecret extends BaseBusEntity {
     if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
       return false;
     }
-    ClientSecret that = (ClientSecret) o;
+    ApplicationClientSecret that = (ApplicationClientSecret) o;
     return id != null && Objects.equals(id, that.id);
   }
 
