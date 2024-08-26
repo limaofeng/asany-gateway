@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.22](https://github.com/limaofeng/asany-gateway/compare/v1.0.21...v1.0.22) (2024-08-26)
+
+
+### Features
+
+* add TokenType and ApplicationType enums ([ed41003](https://github.com/limaofeng/asany-gateway/commit/ed41003e4e54dd77289719dd67dbd15a33499d7b))
+* 升级 graphql gateway 配置方式 ([a770d40](https://github.com/limaofeng/asany-gateway/commit/a770d406a0611e3145f111eff98145d55266fb6b))
+
 ### [1.0.20](https://github.com/limaofeng/asany-gateway/compare/v1.0.19...v1.0.20) (2024-06-21)
 
 
