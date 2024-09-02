@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.23](https://github.com/limaofeng/asany-gateway/compare/v1.0.22...v1.0.23) (2024-09-02)
+
+
+### Features
+
+* 认证优化 ([1e14d58](https://github.com/limaofeng/asany-gateway/commit/1e14d581148eeec933bc0c73a50ba39bd326117d))
+
 ### [1.0.22](https://github.com/limaofeng/asany-gateway/compare/v1.0.21...v1.0.22) (2024-08-26)
 
 
