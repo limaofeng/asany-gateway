@@ -123,14 +123,14 @@ public class DataBaseTokenStore extends AbstractTokenStore<OAuth2AccessToken> {
       ClientSecret clientSecret = details.getClientSecret();
 
       AccessToken accessToken =
-          this.accessTokenService.createAccessToken(
-            ObjectUtil.defaultValue(authentication.getName(), payload::getName),
-            payload.getUserId(),
-            payload.getClientId(),
-            clientSecret,
-            token,
-            TokenType.SESSION,
-            clientDetails);
+        this.accessTokenService.createAccessToken(
+          ObjectUtil.defaultValue(authentication.getName(), payload::getName),
+          payload.getUserId(),
+          payload.getIss(),
+          clientSecret,
+          token,
+          TokenType.SESSION,
+          clientDetails);
       log.debug(String.format("accessToken(%d) 保存成功!", accessToken.getId()));
     } else {
       AccessToken accessToken = optionalAccessToken.get();

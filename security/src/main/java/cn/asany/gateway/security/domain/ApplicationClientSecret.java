@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Objects;
 import lombok.*;
 import net.asany.jfantasy.framework.dao.BaseBusEntity;
-import net.asany.jfantasy.framework.dao.hibernate.annotations.TableGenerator;
 import net.asany.jfantasy.framework.security.auth.core.ClientSecret;
 import net.asany.jfantasy.framework.security.auth.core.ClientSecretType;
 import org.hibernate.Hibernate;
@@ -43,7 +42,6 @@ public class ApplicationClientSecret extends BaseBusEntity implements ClientSecr
 
   @Id
   @Column(name = "ID")
-  @TableGenerator
   private String id;
 
   /** 密钥类型 */
