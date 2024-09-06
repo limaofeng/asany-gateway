@@ -161,11 +161,11 @@ management:
       enabled: false
 
 cuckoo:
-  enable: false
+  enable: ${CUCKOO_ENABLE:false}
   rebuild: false
   elasticsearch:
     client:
-      url: ${ELASTIC_URL}
-      api-key: ${ELASTIC_API}
+      url: ${ELASTIC_URL:https://elasticsearch:9200}
+      api-key: ${ELASTIC_API:TnVEeEZaQUJRY3U0Y3lvdU5USk06VW02WDhCX0JUN2FsZTRVd1VpVFIzQQ==}
       ssl:
-        certificate-path: ${ELASTIC_CERTIFICATE_PATH}
+        certificate-path: ${ELASTIC_CERTIFICATE_PATH:/app/es/ca.crt}
