@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.24](https://github.com/limaofeng/asany-gateway/compare/v1.0.23...v1.0.24) (2024-09-06)
+
+
+### Features
+
+* 简化环境变量配置 ([248aaa6](https://github.com/limaofeng/asany-gateway/commit/248aaa66168237d830fe36f53454adc3a2ec4d2c))
+
 ### [1.0.23](https://github.com/limaofeng/asany-gateway/compare/v1.0.22...v1.0.23) (2024-09-02)
 
 
