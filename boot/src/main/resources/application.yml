@@ -129,11 +129,11 @@ mybatis:
 
 graphql:
   gateway:
-    config-location: classpath:graphql-gateway.yaml
+    config-location: ${GRAPHQL_GATEWAY_CONFIG:classpath:graphql-gateway.yaml}
     security:
       authorization:
         enabled: false
-        config-location: classpath:auth-policy.yaml
+        config-location: ${GRAPHQL_GATEWAY_AUTHORIZATION_CONFIG:classpath:auth-policy.yaml}
   servlet:
     exception-handlers-enabled: true
     cors-enabled: true
