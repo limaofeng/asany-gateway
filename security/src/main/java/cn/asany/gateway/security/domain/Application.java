@@ -116,8 +116,8 @@ public class Application extends BaseBusEntity implements ClientDetails {
   }
 
   @Override
-  public Collection<GrantedAuthority> getAuthorities() {
-    return new ArrayList<>();
+  public Set<GrantedAuthority> getAuthorities() {
+    return new HashSet<>();
   }
 
   @Override
