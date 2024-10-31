@@ -42,7 +42,6 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
     repositoryBaseClass = SimpleAnyJpaRepository.class)
 public class GatewaySecurityAutoConfiguration {
 
-  @Bean
   RedisMessageListenerContainer container(
       RedisConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
 
@@ -53,7 +52,6 @@ public class GatewaySecurityAutoConfiguration {
     return container;
   }
 
-  @Bean
   MessageListenerAdapter listenerAdapter(CleanupExpiredTokenMessageListener listener) {
     return new MessageListenerAdapter(listener, "onMessage");
   }

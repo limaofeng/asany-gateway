@@ -6,13 +6,13 @@ scalars:
 
 services:
   - name: asany-server
-    url: "http://127.0.0.1:8081/graphql"
+    url: "http://192.168.102.4:30881/graphql"
     typeDefs: "./asany-server.graphql"
     introspection:
       enabled: true
       frequency: 30m
   - name: asany-legacy
-    url: "http://127.0.0.1:30882/graphql"
+    url: "http://192.168.102.4:30882/graphql"
     typeDefs: "./asany-legacy.graphql"
     introspection:
       enabled: true

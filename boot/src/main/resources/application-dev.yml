@@ -19,4 +19,4 @@ spring:
 graphql:
   client:
     GLOBAL:
-      address: http://10.7.5.4:30881/graphql
+      address: http://192.168.101.4:8081/graphql

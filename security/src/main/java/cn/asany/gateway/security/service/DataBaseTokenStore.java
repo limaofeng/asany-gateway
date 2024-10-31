@@ -131,11 +131,11 @@ public class DataBaseTokenStore extends AbstractTokenStore<OAuth2AccessToken> {
           token,
           TokenType.SESSION,
           clientDetails);
-      log.debug(String.format("accessToken(%d) 保存成功!", accessToken.getId()));
+      log.debug("accessToken({}) 保存成功!", accessToken.getId());
     } else {
       AccessToken accessToken = optionalAccessToken.get();
       accessToken = this.accessTokenService.updateAccessToken(accessToken, token, clientDetails);
-      log.debug(String.format("accessToken(%d) 更新成功!", accessToken.getId()));
+      log.debug("accessToken({}) 更新成功!", accessToken.getId());
     }
     super.storeAccessToken(token, authentication);
   }
