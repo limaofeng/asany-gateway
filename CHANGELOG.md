@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.27](https://github.com/limaofeng/asany-gateway/compare/v1.0.26...v1.0.27) (2024-10-31)
+
+
+### Bug Fixes
+
+* 注释token过期监听器，避免造成的性能问题 ([f0148bc](https://github.com/limaofeng/asany-gateway/commit/f0148bc81641f0acb60666fab2f3bd90124b1ab7))
+
 ### [1.0.26](https://github.com/limaofeng/asany-gateway/compare/v1.0.25...v1.0.26) (2024-10-16)
 
 
